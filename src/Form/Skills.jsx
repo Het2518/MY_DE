@@ -1,10 +1,11 @@
 // src/Form/Skills.jsx
-import React from "react";
+import React, {  useState } from "react";
 
 const Skills = ({ skills, setSkills }) => {
+  const [temp , setTemp] = useState("")
   const handleChange = (e) => {
-    setSkills([...skills, e.target.value]);
-    e.target.value = "";
+    setSkills([...skills, temp]);
+    setTemp("")
   };
 
   return (
@@ -13,9 +14,15 @@ const Skills = ({ skills, setSkills }) => {
       <input
         type="text"
         name="skill"
+        value={temp}
         placeholder="Add a skill"
         className="w-full p-2 border border-gray-300 rounded mb-2"
-        onChange={handleChange}
+        onChange={e => setTemp(e.target.value)}
+        onKeyDown={e => {
+          if(e.key === 'Enter'){
+            handleChange()
+          }
+        }}
       />
       <ul id="skill-list">
         {skills.map((skill, index) => (

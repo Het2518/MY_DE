@@ -4,8 +4,8 @@ import ResumeBuilder from '../Form/ResumeBuilder';
 
 const Profile = () => {
  return (
-    <div className="p-4">
-      <h2>Profile</h2>
+    <div className="p-4 m-10">
+      {/* <h2>Profile</h2> */}
       <ResumeBuilder />
     </div>
  );
