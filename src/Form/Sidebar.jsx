@@ -1,11 +1,6 @@
 import React, { useState } from "react";
-
-import {
-  LoadingOutlined,
-  SmileOutlined,
-  SolutionOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckSquare, faCoffee } from "@fortawesome/fontawesome-free-solid";
 // import { Steps } from 'antd';
 import { Steps } from "antd";
 const Sidebar = ({ setActiveSection }) => {
@@ -49,10 +44,9 @@ const Sidebar = ({ setActiveSection }) => {
   const description = "This is a description.";
   const [currentTab, setCurrentTab] = useState(1);
 
- 
   switch (currentTab) {
     case 0:
-      setActiveSection('basic-info');
+      setActiveSection("basic-info");
       break;
     case 1:
       setActiveSection("education");
@@ -72,16 +66,20 @@ const Sidebar = ({ setActiveSection }) => {
     case 6:
       setActiveSection("social-links");
       break;
-      default:
-        setActiveSection("basic-info");
-   
+    default:
+      setActiveSection("basic-info");
   }
-  function preHandler(){
-    if(currentTab==0)
-    {
+  function preHandler() {
+    if (currentTab == 0) {
       return;
     }
-    setCurrentTab(currentTab-1);
+    setCurrentTab(currentTab - 1);
+  }
+  function nextHandler() {
+    if (currentTab == 6) {
+      return;
+    }
+    setCurrentTab(currentTab + 1);
   }
   return (
     <div className="w-auto">
@@ -92,43 +90,45 @@ const Sidebar = ({ setActiveSection }) => {
         items={[
           {
             title: "Basic Info",
-            description,
           },
           {
             title: "Education",
-            description,
           },
           {
             title: "Work Experience",
-            description,
           },
           {
             title: "Skills",
-            description,
           },
           {
             title: "Achievements",
-            description,
           },
           {
             title: "Projects",
-            description,
           },
           {
             title: "Social Links",
-            description,
           },
         ]}
       />
       <div className="flex w-full justify-between">
         <div>
-          <button onClick={preHandler} className="bg-blue-500 text-white px-4 py-2 rounded">
-            previous
+          <button
+            onClick={preHandler}
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
           </button>
         </div>
+        <div class="w-10 h-10 bg-white border-b-4 rounded-full flex items-center justify-center">
+    <span class="text-black text-xl ">{currentTab+1}</span>
+</div>
         <div>
-          <button onClick={()=>setCurrentTab(currentTab+1)} className="bg-blue-500 text-white px-4 py-2 rounded">
-            next
+          <button
+            onClick={nextHandler}
+            className="bg-blue-500 text-white px-4 py-2 rounded"
+          >
+            <FontAwesomeIcon icon="fa-solid fa-arrow-right" />
           </button>
         </div>
       </div>
