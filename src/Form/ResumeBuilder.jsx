@@ -147,12 +147,12 @@ const ResumeBuilder = () => {
   };
 
   return (
-    <div className="flex  justify-around -ml-5  mt-10">
+    <div className="flex -ml-5 justify-around  mt-10">
       {/* <h1 className="text-4xl font-bold text-center mt-10 mb-12">Resume Builder</h1> */}
-      <div className="flex w-auto  text-white h-1/4" >
+      <div className="flex w-1/4 mt-1 mr-5   text-white h-1/4 " >
           <Sidebar setActiveSection={setActiveSection} />
         </div>
-     
+   
         <div className="w-1/2 shadow-2xl mr-3 ml-3 rounded-lg p-6 h-3/4">
           {activeSection === "basic-info" && (
             <BasicInfo basicInfo={basicInfo} setBasicInfo={setBasicInfo} />
@@ -185,6 +185,7 @@ const ResumeBuilder = () => {
             />
           )}
         </div>
+     
       
 
       <div className="container  max-w-4xl  p-6 bg-white shadow-2xl rounded-lg mb-10">
