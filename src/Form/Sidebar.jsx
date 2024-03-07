@@ -121,8 +121,8 @@ const Sidebar = ({ setActiveSection }) => {
           </button>
         </div>
         <div class="w-10 h-10 bg-white border-b-4 rounded-full flex items-center justify-center">
-    <span class="text-black text-xl ">{currentTab+1}</span>
-</div>
+          <span class="text-black text-xl ">{currentTab + 1}</span>
+        </div>
         <div>
           <button
             onClick={nextHandler}
