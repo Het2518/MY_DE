@@ -16,7 +16,7 @@ function Show() {
     const data = retrievedData.filter((data)=>{
       return data._id === USERid;
     })
-    // console.log(data[0].basicInfo);
+   
  
   
     
