@@ -4,7 +4,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-800 text-white p-4 fixed bottom-0 w-full">
+    <footer className="bg-gray-800 text-white p-4 relative   fixed bottom-0 w-full">
       <div className="container mx-auto flex justify-between items-center">
         <div>
           &copy; {currentYear} Your Company Name

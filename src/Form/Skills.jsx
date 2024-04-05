@@ -2,7 +2,7 @@
 import React, {  useState } from "react";
 
 const Skills = ({ skills, setSkills }) => {
-  const [temp , setTemp] = useState("")
+  const [temp , setTemp] = useState("");
   const handleChange = (e) => {
     setSkills([...skills, temp]);
     setTemp("")
@@ -29,7 +29,10 @@ const Skills = ({ skills, setSkills }) => {
           <li key={index}>{skill}</li>
         ))}
       </ul>
-      <button className="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+      <div className="flex w-full justify-end">
+      {/* <button className="bg-blue-500 text-white px-4 py-2 rounded">Save</button> */}
+      <button className="bg-blue-500 text-white px-4 py-2 rounded">add</button>
+      </div>
     </div>
   );
 };

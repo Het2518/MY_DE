@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Signup() {
   const navigate = useNavigate();
@@ -13,16 +14,25 @@ function Signup() {
     console.log("Sign up user");
     // Simulate signup process
     console.log("Name:", name, "Email:", email, "Password:", password);
-    // Optionally, navigate the user to another page after successful sign up
+    
+   userSignin();
     navigate("/login"); // Navigate to login page or any other page
+  };
+  const userSignin = async () => {
+    await axios
+      .post("http://localhost:3002/api/v1/registaion/user", {name,email,password })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => console.error("Error:", error));
   };
 
   return (
       <>
         <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 mt-10 lg:px-8">
-          <div className="text-center font-bold text-2xl">Sign up</div>
           <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <div className="text-center mb-3 font-bold text-2xl">Sign up</div>
               <form
                   className="space-y-6"
                   action="#"

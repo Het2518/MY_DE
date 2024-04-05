@@ -1,9 +1,15 @@
 // src/Form/WorkExperience.jsx
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const WorkExperience = ({ workExperience, setWorkExperience }) => {
+  const [saveData,setSaveData] = useState({}); 
+
+   const save = () => {
+    setWorkExperience(old => [...old, saveData]);
+  }
   const handleChange = (e) => {
-    setWorkExperience({ ...workExperience, [e.target.name]: e.target.value });
+    setSaveData({ ...saveData, [e.target.name]: e.target.value });
+    console.log(saveData);
   };
 
   return (
@@ -12,7 +18,7 @@ const WorkExperience = ({ workExperience, setWorkExperience }) => {
       <input
         type="text"
         name="employer"
-        placeholder="Employer"
+        placeholder="Company name"
         className="w-full p-2 border border-gray-300 rounded mb-2"
         onChange={handleChange}
       />
@@ -36,7 +42,10 @@ const WorkExperience = ({ workExperience, setWorkExperience }) => {
         className="w-full p-2 border border-gray-300 rounded mb-2"
         onChange={handleChange}
       />
-      <button className="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+     <div className="flex w-full justify-end">
+      {/* <button className="bg-blue-500 text-white px-4 py-2 rounded">Save</button> */}
+      <button onClick={save} className="bg-blue-500 text-white px-4 py-2 rounded">add</button>
+      </div>
     </div>
   );
 };

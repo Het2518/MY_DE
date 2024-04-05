@@ -42,20 +42,21 @@ const Sidebar = ({ setActiveSection }) => {
   //  );
 
   const description = "This is a description.";
-  const [currentTab, setCurrentTab] = useState(1);
+  const [currentTab, setCurrentTab] = useState(0);
 
   switch (currentTab) {
     case 0:
       setActiveSection("basic-info");
       break;
     case 1:
-      setActiveSection("education");
+    
+      setActiveSection("skills");
       break;
     case 2:
       setActiveSection("work-experience");
       break;
     case 3:
-      setActiveSection("skills");
+      setActiveSection("education");
       break;
     case 4:
       setActiveSection("achievements");
@@ -81,24 +82,30 @@ const Sidebar = ({ setActiveSection }) => {
     }
     setCurrentTab(currentTab + 1);
   }
+  const onChange = (value) => {
+    // console.log('onChange:', value);
+    setCurrentTab(value);
+  };
+
   return (
     <div className="w-auto">
       <Steps
         direction="vertical"
         size="small"
+        onChange={onChange}
         current={currentTab}
         items={[
           {
             title: "Basic Info",
           },
           {
-            title: "Education",
+            title: "Skills",
           },
           {
             title: "Work Experience",
           },
           {
-            title: "Skills",
+            title: "Education",
           },
           {
             title: "Achievements",
@@ -120,8 +127,8 @@ const Sidebar = ({ setActiveSection }) => {
             <FontAwesomeIcon icon="fa-solid fa-arrow-left" />
           </button>
         </div>
-        <div class="w-10 h-10 bg-white border-b-4 rounded-full flex items-center justify-center">
-          <span class="text-black text-xl ">{currentTab + 1}</span>
+        <div className="w-10 h-10 bg-white border-b-4 rounded-full flex items-center justify-center">
+          <span className="text-black text-xl ">{currentTab + 1}</span>
         </div>
         <div>
           <button

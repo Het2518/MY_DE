@@ -1,10 +1,19 @@
 // src/Form/Education.jsx
-import React from "react";
+import React, { useState } from "react";
 
 const Education = ({ education, setEducation }) => {
-  const handleChange = (e) => {
-    setEducation({ ...education, [e.target.name]: e.target.value });
-  };
+
+    const [saveData,setSaveData] = useState({}); 
+
+    const save = () => {
+     setEducation(old => [...old, saveData]);
+     
+   }
+   const handleChange = (e) => {
+     setSaveData({ ...saveData, [e.target.name]: e.target.value });
+    //  console.log(saveData);
+   };
+    
 
   return (
     <div className="mb-4">
@@ -25,8 +34,8 @@ const Education = ({ education, setEducation }) => {
       />
       <input
         type="text"
-        name="fieldOfStudy"
-        placeholder="Field of Study"
+        name="location"
+        placeholder="Location"
         className="w-full p-2 border border-gray-300 rounded mb-2"
         onChange={handleChange}
       />
@@ -44,7 +53,10 @@ const Education = ({ education, setEducation }) => {
         className="w-full p-2 border border-gray-300 rounded mb-2"
         onChange={handleChange}
       />
-      <button className="bg-blue-500 text-white px-4 py-2 rounded">Save</button>
+       <div className="flex w-full justify-end">
+      {/* <button className="bg-blue-500 text-white px-4 py-2 rounded">Save</button> */}
+      <button onClick={save} className="bg-blue-500 text-white px-4 py-2 rounded">add</button>
+      </div>
     </div>
   );
 };

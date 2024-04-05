@@ -1,27 +1,86 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import {  useNavigate } from "react-router-dom";
+import axios from "axios";
+// import {NotificationContainer, NotificationManager} from 'react-notifications';
+// import toast, { Toaster } from 'react-hot-toast';
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
+  // console.log(setAuthenticated);
+  // console.log(isAuthenticated);
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+
+
+  
+    // const log_in = async( ) =>{
+    //  await axios
+    //   .post("http://localhost:3002/api/v1/login", {email,password })
+    //   .then((response) => {
+    //     // console.log(response);
+    //     // setUser(response.data);
+    //     if(response.data.success)
+    //     {
+    //       localStorage.setItem("user", response.data.token);
+    //       console.log(response.data.token);
+    //       // setAuthenticated(true);
+    //     }
+    //     else{
+    //       console.log("User not found");
+    //     }
+    //   })
+    //   .catch((error) => console.error("Error:", error));
+    // }
+
+  const handleSubmit = async(e) => {
     e.preventDefault(); // Prevent default form submission
     console.log("Login user");
-    // Simulate login process
-    console.log("Email:", email, "Password:", password);
-    // Optionally, navigate the user to another page after successful login
+   
+    const data = await axios
+      .post("http://localhost:3002/api/v1/login", {email,password })
+      .then((response) => {
+        // console.log(response);
+        // setUser(response.data);
+        if(response.data.success)
+        {
+         
+          localStorage.setItem("user", response.data.token);
+          localStorage.setItem("show",0);
+          localStorage.setItem("token",true);
+          localStorage.setItem("id",response?.data?.user?._id);
+          localStorage.setItem("userName",response?.data?.user?.name);
+          localStorage.setItem("email",response?.data?.user?.email);
+          // localStorage.setItem("userResume");
+          console.log(response.data);
+         
+          // setAuthenticated(true);
+          
+          
+          navigate("/");
+        }
+        else{
+          console.log("User not found");
+        }
+      })
+      .catch((error) => console.error("Error:", error));
+     const token = localStorage.getItem('token');
+   
+   
   };
-
+  
   return (
       <>
-        <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8 mt-10">
-          <div className="text-center font-bold text-2xl">Login</div>
+      
+        <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8 mt-14 mb-14">
           <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
             <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <div className="text-center mb-3 font-bold text-2xl">Login</div>
               <form
                   className="space-y-6"
-                  action="#"
-                  method="POST"
                   onSubmit={handleSubmit}
               >
                 <div>
@@ -84,8 +143,10 @@ function Login() {
                 <div>
                   <button
                       type="submit"
+                    // onClick={notify}
                       className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
+                    
                     Log in
                   </button>
                 </div>
